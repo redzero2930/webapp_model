@@ -1,26 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from 'react';
 
 interface BaseProps {
   name: string;
-  value?: string
+  value?: string;
   placeholder?: string;
+  onChange?: (value: string) => void; 
 }
 
 export function Input(props: BaseProps) {
-  const { name, placeholder } = props;
+  const { name, value, placeholder, onChange } = props;
+  const [inputValue, setInputValue] = useState(value || '');
 
-  const [value, setValue] = useState("");
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    setInputValue(newValue);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    if (onChange) {
+      onChange(newValue);
+    }
   };
 
   return (
     <input
       name={name}
-      value={value}
+      value={inputValue}
       placeholder={placeholder}
-      onChange={handleInputChange}
+      onChange={handleInputChange} 
     />
   );
 }
