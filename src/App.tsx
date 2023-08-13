@@ -1,3 +1,4 @@
+import Input from "./Components/Input";
 import MainPage from "./Pages/Main-page";
 
 function App() {
@@ -5,6 +6,11 @@ function App() {
     <div className="App">
       <h1>Hola mundo, app_model, second pc</h1>
       <MainPage/>
+      <Input
+        name="SampleInput"
+        value="SampleInput"
+        placeholder="Value"
+      />
     </div>
   );
 }
